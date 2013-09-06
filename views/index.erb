@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	</head>
+	<body>
+	<% @buttons.each do |btn| %>
+
+		<button type="button" 
+			class="btn btn-default btn-lg" 
+			onclick="xmlhttp=new XMLHttpRequest();
+				xmlhttp.open('GET',<%= '\'' + btn[:name].downcase + '\'' %>,false);
+				xmlhttp.send();">
+			<%= btn[:name] %>	
+			<span class="glyphicon glyphicon-<%= btn[:icon] %>">
+			</span>
+		</button>
+	<% end %>
+	</body>
+</html>
