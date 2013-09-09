@@ -3,6 +3,29 @@
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 	</head>
 	<body>
+	<div id="album-art">
+
+	</div>
+	<div>
+	<ol class="breadcrumb">
+		<!--
+		<button type="button" class="btn btn-default btn-sm">
+			<span class="glyphicon glyphicon-refresh"></span>
+		</button>	
+		-->
+		<li>
+			<span class="glyphicon glyphicon-user"></span>
+			<a href="#"><%= @metadata.artist %></a>
+		</li>
+		<li>
+			<span class="glyphicon glyphicon-record"></span>
+			<a href="#"><%= @metadata.album %></a>
+		</li>
+		<li>
+			<span class="glyphicon glyphicon-music"></span>
+			<a href="#"><%= @metadata.title %></a>
+		</li>
+	</ol>
 	<% @buttons.each do |btn| %>
 
 		<button type="button" 
@@ -15,5 +38,6 @@
 			</span>
 		</button>
 	<% end %>
+	</div>
 	</body>
 </html>

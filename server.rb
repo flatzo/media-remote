@@ -4,27 +4,38 @@ require 'dbus'
 require 'sinatra'
 require 'erb'
 
-bus = DBus::SessionBus.instance
-# get a rb object
-proxy = bus.introspect("org.mpris.MediaPlayer2.rhythmbox", "/org/mpris/MediaPlayer2")
-proxyi = proxy["org.mpris.MediaPlayer2.Player"]
+require './player'
 
+# #####################################################################
+# CONFIG
+# #####################################################################
 set :bind, '0.0.0.0'
 
+# #####################################################################
+# GLOBAL 
+# #####################################################################
+player = Player.new
+
+
+
 get '/play' do
-	proxyi.Play()
+	player.play()
 end
 
 get '/pause' do
-	proxyi.Pause()
+	player.pause()
 end
 
 get '/next' do
-	proxyi.Next()
+	player.next()
 end
 
 get '/previous' do
-	proxyi.Previous()
+	player.previous()
+end
+
+get '/metadata' do
+	player.metadata.acquire
 end
 
 get '/' do
@@ -34,6 +45,7 @@ get '/' do
 		{name: 'Pause', 	icon: 'pause'},
 		{name: 'Next', 		icon: 'step-forward'}
 	]
+	@metadata = player.metadata
 
 	erb :index
 end
